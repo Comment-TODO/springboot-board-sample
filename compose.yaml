@@ -6,20 +6,38 @@ services:
     volumes:
       - ./db_init:/docker-entrypoint-initdb.d
     environment:
+      MYSQL_USER: "board_user"
       MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_pwd
+    networks:
+      - springboot-board-sample-network
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     restart: always
     secrets:
       - db_pwd
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$(cat $${MYSQL_ROOT_PASSWORD_FILE})
+      start_period: 20s
+      interval: 5s
+      timeout: 5s
+      retries: 30
   web:
     build: .
     ports:
       - "8080:8080"
     environment:
       VERSION: "0.0.1"
+      DB_USER_NAME: "board_user"
+      DB_USER_PASSWORD: ${DB_USER_PASSWORD}
+    networks:
+      - springboot-board-sample-network
+    secrets:
+      - db_pwd
     depends_on:
       db:
-        condition: service_completed_successfully
+        condition: service_healthy
 secrets:
   db_pwd:
     file: secret/db_pwd.txt
+networks:
+  springboot-board-sample-network:
+    driver: bridge
