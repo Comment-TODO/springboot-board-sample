@@ -1,4 +1,4 @@
-package com.github.CommentTODO.springbootboardsample.dto;
+package com.github.CommentTODO.springbootboardsample.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

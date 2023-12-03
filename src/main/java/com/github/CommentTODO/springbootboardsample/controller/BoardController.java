@@ -1,6 +1,6 @@
 package com.github.CommentTODO.springbootboardsample.controller;
 
-import com.github.CommentTODO.springbootboardsample.dto.Article;
+import com.github.CommentTODO.springbootboardsample.entity.Article;
 import com.github.CommentTODO.springbootboardsample.service.BoardService;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;

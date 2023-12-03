@@ -1,6 +1,6 @@
 package com.github.CommentTODO.springbootboardsample.service;
 
-import com.github.CommentTODO.springbootboardsample.dto.Article;
+import com.github.CommentTODO.springbootboardsample.entity.Article;
 import com.github.CommentTODO.springbootboardsample.repository.BoardRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

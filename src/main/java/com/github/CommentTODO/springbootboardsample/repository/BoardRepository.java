@@ -1,6 +1,6 @@
 package com.github.CommentTODO.springbootboardsample.repository;
 
-import com.github.CommentTODO.springbootboardsample.dto.Article;
+import com.github.CommentTODO.springbootboardsample.entity.Article;
 import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
