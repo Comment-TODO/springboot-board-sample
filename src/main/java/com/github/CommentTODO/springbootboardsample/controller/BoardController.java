@@ -3,7 +3,9 @@ package com.github.CommentTODO.springbootboardsample.controller;
 import com.github.CommentTODO.springbootboardsample.entity.Article;
 import com.github.CommentTODO.springbootboardsample.service.BoardService;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,8 +19,13 @@ public class BoardController {
     this.boardService = boardService;
   }
 
-  @GetMapping
+  @GetMapping("/")
   public List<Article> getArticleList() {
     return boardService.getArticleList();
+  }
+
+  @GetMapping("/{id}")
+  public Optional<Article> getArticleById(@PathVariable(value = "id") Long id) {
+    return boardService.getArticleById(id);
   }
 }
