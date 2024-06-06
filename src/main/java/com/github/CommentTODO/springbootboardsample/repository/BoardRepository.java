@@ -15,11 +15,11 @@ public interface BoardRepository extends CrudRepository<Article, Long> {
 
   List<Article> findAllByOrderByIdDesc();
 
-  @Query("select a from Article a where a.id=:id")
+  @Query("SELECT a FROM Article a WHERE a.id=:id")
   Optional<Article> findArticleById(@Param(value = "id") Long id);
 
   @Transactional
-  @Modifying
+  @Modifying(clearAutomatically = true)
   @Query("UPDATE Article a SET title = :title WHERE a.id = :id")
   int updateById(@Param(value = "id") Long id, @Param(value = "title") String title);
 }
