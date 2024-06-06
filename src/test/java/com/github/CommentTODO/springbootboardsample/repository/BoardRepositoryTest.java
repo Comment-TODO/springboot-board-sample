@@ -33,9 +33,9 @@ class BoardRepositoryTest {
 
   @Test
   void updateArticle() {
-    int updatedRows = boardRepository.updateById(2l, "New Title Again");
-    Optional<Article> after = boardRepository.findArticleById(2l);
-
+    Article article = boardRepository.save(new Article("Test Title", "Test Content."));
+    int updatedRows = boardRepository.updateById(article.getId(), "New Title Again");
+    Optional<Article> after = boardRepository.findArticleById(article.getId());
     assertThat(updatedRows).isEqualTo(1);
     assertThat(after.get().getTitle()).isEqualTo("New Title Again");
   }
