@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class BoardService {
@@ -19,5 +20,15 @@ public class BoardService {
 
   public Optional<Article> getArticleById(Long id) {
     return boardRepository.findArticleById(id);
+  }
+
+  @Transactional
+  public void updateArticle(Long id, Article updateDTO) {
+    Article prevArticle = this.getArticleById(id).orElseThrow(() -> {
+      throw new IllegalArgumentException("해당 게시물은 더 이상 존재하지 않습니다.");
+    });
+
+    updateDTO.setId(id);
+    boardRepository.save(updateDTO);
   }
 }
