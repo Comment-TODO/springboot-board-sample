@@ -11,4 +11,10 @@ CREATE TABLE IF NOT EXISTS article (
   CONSTRAINT article_PK PRIMARY KEY(id)
 ) ENGINE=INNODB;
 
-INSERT INTO article (title, content) values ('Hello, world!', 'Nice to meet you.');
+INSERT INTO article (title, content) VALUES ('Hello, world!', 'Nice to meet you.');
+INSERT INTO article (title, content) (SELECT title, content FROM article);
+INSERT INTO article (title, content) (SELECT title, content FROM article);
+INSERT INTO article (title, content) (SELECT title, content FROM article);
+INSERT INTO article (title, content) (SELECT title, content FROM article);
+INSERT INTO article (title, content) (SELECT title, content FROM article);
+INSERT INTO article (title, content) (SELECT title, content FROM article);
